@@ -26,14 +26,14 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Explain Skaffold's automatic Kind detection: local images are loaded into Kind, no registry or push needed.
 - Done when: on a clean Ubuntu environment `./setup.sh` completes, a second run changes nothing, `./setup.sh check` exits 0, `kubectl get nodes` shows Ready, `skaffold version` prints v2.x; `shellcheck setup.sh` is clean; chapter 01 committed.
 
-### Phase 2: Demo app and Dockerfile [STATUS: TODO]
+### Phase 2: Demo app and Dockerfile [STATUS: DONE]
 - Goal: A service that runs standalone in Docker.
 - Tasks:
-  - [ ] Scaffold Go module with `/` and `/healthz`, port from env var, graceful shutdown on SIGTERM via `http.Server.Shutdown`, sane server timeouts.
-  - [ ] Add a unit test for the handlers (`httptest`).
-  - [ ] Multi-stage Dockerfile: Go builder stage with module download layer cached separately and BuildKit cache mounts for the build cache, static binary (`CGO_ENABLED=0`), minimal non-root runtime image (distroless or scratch).
-  - [ ] Add `.dockerignore` (exclude `.git`, local binaries).
-  - [ ] Chapter 02: build and run with plain Docker; note the pain points Skaffold will remove (manual tag, load into Kind, apply, restart).
+  - [x] Scaffold Go module with `/` and `/healthz`, port from env var, graceful shutdown on SIGTERM via `http.Server.Shutdown`, sane server timeouts.
+  - [x] Add a unit test for the handlers (`httptest`).
+  - [x] Multi-stage Dockerfile: Go builder stage with module download layer cached separately and BuildKit cache mounts for the build cache, static binary (`CGO_ENABLED=0`), minimal non-root runtime image (distroless or scratch).
+  - [x] Add `.dockerignore` (exclude `.git`, local binaries).
+  - [x] Chapter 02: build and run with plain Docker; note the pain points Skaffold will remove (manual tag, load into Kind, apply, restart).
 - Done when: `docker build` succeeds, container responds 200 on `/healthz`, `go test ./...`, `go vet ./...` pass.
 
 ### Phase 3: Kubernetes manifests [STATUS: TODO]

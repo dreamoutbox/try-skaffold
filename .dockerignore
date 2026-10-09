@@ -1,0 +1,7 @@
+.git
+.gitignore
+docs
+*.md
+bin
+setup.sh
+kind-config.yaml
