@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: skaffold-demo
+  namespace: skaffold-demo
+  labels:
+    app: skaffold-demo
+spec:
+  type: ClusterIP
+  selector:
+    app: skaffold-demo
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

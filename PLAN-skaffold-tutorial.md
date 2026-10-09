@@ -36,12 +36,12 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 02: build and run with plain Docker; note the pain points Skaffold will remove (manual tag, load into Kind, apply, restart).
 - Done when: `docker build` succeeds, container responds 200 on `/healthz`, `go test ./...`, `go vet ./...` pass.
 
-### Phase 3: Kubernetes manifests [STATUS: TODO]
+### Phase 3: Kubernetes manifests [STATUS: DONE]
 - Goal: Raw manifests that deploy manually to Kind.
 - Tasks:
-  - [ ] Namespace, Deployment (resource requests/limits, readiness and liveness probes on `/healthz`, securityContext), Service.
-  - [ ] Keep image name in the manifest as a plain placeholder-free name that matches the Skaffold artifact name (explain how Skaffold substitutes tags).
-  - [ ] Chapter 03: manual flow once (build, `kind load`, `kubectl apply`, port-forward) to establish the baseline being automated.
+  - [x] Namespace, Deployment (resource requests/limits, readiness and liveness probes on `/healthz`, securityContext), Service.
+  - [x] Keep image name in the manifest as a plain placeholder-free name that matches the Skaffold artifact name (explain how Skaffold substitutes tags).
+  - [x] Chapter 03: manual flow once (build, `kind load`, `kubectl apply`, port-forward) to establish the baseline being automated.
 - Done when: manual deploy to Kind works and `kubectl port-forward` reaches the service; manifests pass `kubectl apply --dry-run=server`.
 
 ### Phase 4: First `skaffold.yaml` — build and run [STATUS: TODO]
