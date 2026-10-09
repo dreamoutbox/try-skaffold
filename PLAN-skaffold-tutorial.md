@@ -97,12 +97,12 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Dry-run the production path against a second Kind cluster (or a cloud test cluster) before the real one.
 - Done when: CI run on a tag builds, pushes, and deploys to the target cluster; pods run the digest-pinned image; rolling back to the previous artifact set succeeds; `skaffold deploy` against the wrong context is refused.
 
-### Phase 9: Wrap-up and reference [STATUS: TODO]
+### Phase 9: Wrap-up and reference [STATUS: DONE]
 - Goal: Tutorial is navigable and maintainable.
 - Tasks:
-  - [ ] README with chapter index, command cheat sheet, and troubleshooting (Kind image not found, `ImagePullBackOff`, stale cache, port-forward conflicts).
-  - [ ] Pin tool versions in the README and CI.
-  - [ ] Final pass: run every chapter's commands from a clean clone.
+  - [x] README with chapter index, command cheat sheet, and troubleshooting (Kind image not found, `ImagePullBackOff`, stale cache, port-forward conflicts).
+  - [x] Pin tool versions in the README and CI.
+  - [x] Final pass: run every chapter's commands from a clean clone.
 - Done when: clean-clone walkthrough passes end to end on a fresh Kind cluster.
 
 ---
