@@ -8,11 +8,11 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
 
 ---
 
-### Phase 1: Environment and mental model [STATUS: TODO]
+### Phase 1: Environment and mental model [STATUS: DONE]
 - Goal: Tooling installed and the reader understands what Skaffold automates.
 - Tasks:
-  - [ ] Chapter 01: explain the Skaffold pipeline (build → tag → render → deploy → watch) and where it sits relative to Docker, kubectl, Helm, Kustomize.
-  - [ ] Write `./setup.sh` wrapper at repo root, with these requirements:
+  - [x] Chapter 01: explain the Skaffold pipeline (build → tag → render → deploy → watch) and where it sits relative to Docker, kubectl, Helm, Kustomize.
+  - [x] Write `./setup.sh` wrapper at repo root, with these requirements:
     - Strict mode, runs as normal user, uses `sudo` only for apt and `/usr/local/bin` installs; refuses non-apt systems with a clear message.
     - Idempotent: skips any tool already installed at an acceptable version; safe to re-run.
     - Installs apt packages: `curl`, `ca-certificates`, `git`, `make` (and `golang` or a pinned Go tarball if the apt version is too old for the demo's `go.mod`).
@@ -21,9 +21,9 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
     - Versions pinned in one variables block at the top (overridable by env vars), matching versions documented in the README.
     - Subcommands: `./setup.sh` (install all), `./setup.sh check` (verify only, no changes, non-zero exit if anything is missing), `./setup.sh cluster` (create Kind cluster from the config file; skip if it exists).
     - Prints a final summary of installed versions.
-  - [ ] Create Kind cluster with a named cluster config; confirm context `kind-<name>` with `kubectl cluster-info`.
-  - [ ] Document `skaffold diagnose` and `skaffold version` as sanity checks.
-  - [ ] Explain Skaffold's automatic Kind detection: local images are loaded into Kind, no registry or push needed.
+  - [x] Create Kind cluster with a named cluster config; confirm context `kind-<name>` with `kubectl cluster-info`.
+  - [x] Document `skaffold diagnose` and `skaffold version` as sanity checks.
+  - [x] Explain Skaffold's automatic Kind detection: local images are loaded into Kind, no registry or push needed.
 - Done when: on a clean Ubuntu environment `./setup.sh` completes, a second run changes nothing, `./setup.sh check` exits 0, `kubectl get nodes` shows Ready, `skaffold version` prints v2.x; `shellcheck setup.sh` is clean; chapter 01 committed.
 
 ### Phase 2: Demo app and Dockerfile [STATUS: TODO]
