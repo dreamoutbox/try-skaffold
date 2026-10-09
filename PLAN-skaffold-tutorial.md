@@ -53,14 +53,14 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 04.
 - Done when: `skaffold run` deploys to Kind, pod becomes Ready, `skaffold delete` cleans everything; `skaffold fix` reports no migrations needed.
 
-### Phase 5: Inner dev loop — `dev`, port-forward, file sync [STATUS: TODO]
+### Phase 5: Inner dev loop — `dev`, port-forward, file sync [STATUS: DONE]
 - Goal: Edit code, see it running in the cluster automatically.
 - Tasks:
-  - [ ] `skaffold dev` with `portForward` config; show rebuild-on-change.
-  - [ ] Explain build caching and why the separate module-download layer plus build cache mounts keep rebuilds fast; show cache hit/miss in logs.
-  - [ ] Explain file sync (manual sync rules) and its limits for compiled languages; recommend rebuild for Go, sync for static assets/config only.
-  - [ ] Add `skaffold debug` overview (debug ports, what it injects) as optional section.
-  - [ ] Chapter 05, including `--cleanup=false`, `--no-prune`, and `skaffold dev` vs `skaffold run` guidance.
+  - [x] `skaffold dev` with `portForward` config; show rebuild-on-change.
+  - [x] Explain build caching and why the separate module-download layer plus build cache mounts keep rebuilds fast; show cache hit/miss in logs.
+  - [x] Explain file sync (manual sync rules) and its limits for compiled languages; recommend rebuild for Go, sync for static assets/config only.
+  - [x] Add `skaffold debug` overview (debug ports, what it injects) as optional section.
+  - [x] Chapter 05, including `--cleanup=false`, `--no-prune`, and `skaffold dev` vs `skaffold run` guidance.
 - Done when: changing the `/` response text and saving results in a new pod serving the new text without manual commands; Ctrl+C removes resources.
 
 ### Phase 6: Testing and verification in the pipeline [STATUS: TODO]

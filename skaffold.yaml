@@ -16,3 +16,9 @@ manifests:
     - k8s/service.yaml
 deploy:
   kubectl: {}
+portForward:
+  - resourceType: service
+    resourceName: skaffold-demo
+    namespace: skaffold-demo
+    port: 80
+    localPort: 8080

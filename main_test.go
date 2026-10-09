@@ -26,7 +26,7 @@ func TestRootHandler(t *testing.T) {
 		t.Fatalf("failed to read response body: %v", err)
 	}
 
-	expected := "Hello from skaffold-demo!"
+	expected := "Hello from skaffold-demo (updated)!"
 	if !strings.Contains(string(body), expected) {
 		t.Fatalf("expected body to contain %q, got %q", expected, string(body))
 	}

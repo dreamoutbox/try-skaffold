@@ -23,7 +23,7 @@ func newRouter() http.Handler {
 		}
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
-		_, _ = fmt.Fprintln(w, "Hello from skaffold-demo!")
+		_, _ = fmt.Fprintln(w, "Hello from skaffold-demo (updated)!")
 	})
 
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
