@@ -44,13 +44,13 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 03: manual flow once (build, `kind load`, `kubectl apply`, port-forward) to establish the baseline being automated.
 - Done when: manual deploy to Kind works and `kubectl port-forward` reaches the service; manifests pass `kubectl apply --dry-run=server`.
 
-### Phase 4: First `skaffold.yaml` — build and run [STATUS: TODO]
+### Phase 4: First `skaffold.yaml` — build and run [STATUS: DONE]
 - Goal: One command replaces the manual flow.
 - Tasks:
-  - [ ] Generate with `skaffold init`, then hand-edit; explain `apiVersion`, `build.artifacts`, `manifests.rawYaml`, `deploy.kubectl`.
-  - [ ] Explain tag policy (`gitCommit` default) and `skaffold build`, `skaffold render`, `skaffold run`, `skaffold delete`.
-  - [ ] Show `skaffold render` output to demonstrate resolved image tags.
-  - [ ] Chapter 04.
+  - [x] Generate with `skaffold init`, then hand-edit; explain `apiVersion`, `build.artifacts`, `manifests.rawYaml`, `deploy.kubectl`.
+  - [x] Explain tag policy (`gitCommit` default) and `skaffold build`, `skaffold render`, `skaffold run`, `skaffold delete`.
+  - [x] Show `skaffold render` output to demonstrate resolved image tags.
+  - [x] Chapter 04.
 - Done when: `skaffold run` deploys to Kind, pod becomes Ready, `skaffold delete` cleans everything; `skaffold fix` reports no migrations needed.
 
 ### Phase 5: Inner dev loop — `dev`, port-forward, file sync [STATUS: TODO]
