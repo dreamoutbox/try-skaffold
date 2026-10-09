@@ -55,6 +55,8 @@ profiles:
       kustomize:
         paths:
           - k8s/overlays/prod
-    build:
-      local:
-        push: true
+    deploy:
+      kubeContext: kind-skaffold-prod
+      statusCheck: true
+      statusCheckDeadlineSeconds: 120
+      kubectl: {}

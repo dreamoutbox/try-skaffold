@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Lint & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true
+
+      - name: Run unit tests
+        run: go test -v ./...
+
+      - name: Run go vet
+        run: go vet ./...
+
+  build-and-verify:
+    name: Build & Verify Artifacts
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Skaffold
+        run: ./setup.sh
+
+      - name: Build and run container structure tests
+        run: skaffold build --file-output=artifacts.json
+
+      - name: Render production manifests
+        run: skaffold render -p prod --build-artifacts=artifacts.json

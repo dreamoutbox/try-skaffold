@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+  - pdb.yaml
 
 commonLabels:
   environment: prod

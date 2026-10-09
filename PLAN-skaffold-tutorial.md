@@ -82,19 +82,19 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 07.
 - Done when: `skaffold render -p dev` and `skaffold render -p prod` produce different, correct output; dev loop on Kind still works unchanged.
 
-### Phase 8: Production deployment [STATUS: TODO]
+### Phase 8: Production deployment [STATUS: DONE]
 - Goal: Reproducible, safe deploy to a real Kubernetes cluster.
 - Tasks:
-  - [ ] Chapter 08 explains the principle: build once in CI, promote the same immutable image; never run `skaffold dev` against production.
-  - [ ] Registry: create repo, pull credentials as an imagePullSecret or cloud-native identity; push via `--default-repo`.
-  - [ ] Safety rails: pin `deploy.kubeContext` and `--kube-context` in the prod profile; add `--assume-yes=false` default behavior note; set `--namespace`.
-  - [ ] Choose the deploy path and document both:
+  - [x] Chapter 08 explains the principle: build once in CI, promote the same immutable image; never run `skaffold dev` against production.
+  - [x] Registry: create repo, pull credentials as an imagePullSecret or cloud-native identity; push via `--default-repo`.
+  - [x] Safety rails: pin `deploy.kubeContext` and `--kube-context` in the prod profile; add `--assume-yes=false` default behavior note; set `--namespace`.
+  - [x] Choose the deploy path and document both:
     - Imperative CI deploy: `skaffold build --file-output` then `skaffold deploy --build-artifacts` (digest-pinned images, tag by git SHA).
     - GitOps: `skaffold render` output committed to a manifests repo/branch, applied by Argo CD or Flux.
-  - [ ] CI pipeline (GitHub Actions): lint/test → `skaffold build` → push → `skaffold deploy -p prod` on tag/main, with cluster credentials from CI secrets or OIDC.
-  - [ ] Production hardening checklist: replicas ≥ 2, PodDisruptionBudget, resource limits, rollout strategy and `statusCheck`, rollback procedure (redeploy previous build artifacts file / revert git SHA).
-  - [ ] Secrets: do not commit; use External Secrets, Sealed Secrets, or cloud secret manager reference.
-  - [ ] Dry-run the production path against a second Kind cluster (or a cloud test cluster) before the real one.
+  - [x] CI pipeline (GitHub Actions): lint/test → `skaffold build` → push → `skaffold deploy -p prod` on tag/main, with cluster credentials from CI secrets or OIDC.
+  - [x] Production hardening checklist: replicas ≥ 2, PodDisruptionBudget, resource limits, rollout strategy and `statusCheck`, rollback procedure (redeploy previous build artifacts file / revert git SHA).
+  - [x] Secrets: do not commit; use External Secrets, Sealed Secrets, or cloud secret manager reference.
+  - [x] Dry-run the production path against a second Kind cluster (or a cloud test cluster) before the real one.
 - Done when: CI run on a tag builds, pushes, and deploys to the target cluster; pods run the digest-pinned image; rolling back to the previous artifact set succeeds; `skaffold deploy` against the wrong context is refused.
 
 ### Phase 9: Wrap-up and reference [STATUS: TODO]
