@@ -72,14 +72,14 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 06.
 - Done when: broken probe makes `skaffold run` fail with a clear status-check error; fixed version passes tests and verify.
 
-### Phase 7: Profiles, config, and multi-artifact (Kustomize) [STATUS: TODO]
+### Phase 7: Profiles, config, and multi-artifact (Kustomize) [STATUS: DONE]
 - Goal: Same project, multiple environments, no manifest duplication.
 - Tasks:
-  - [ ] Restructure manifests into Kustomize `base/` and `overlays/{dev,prod}/`; switch `skaffold.yaml` to `manifests.kustomize`.
-  - [ ] Add profiles: `dev` (local build, Kind) and `prod` (registry push, prod overlay), explain profile activation by kube-context and `-p` flag.
-  - [ ] Show env-var templating in `skaffold.yaml` (e.g. image repo) and `--default-repo`.
-  - [ ] Optional: add a second small service as a second artifact to show `requires:`/multi-config and per-artifact dependencies.
-  - [ ] Chapter 07.
+  - [x] Restructure manifests into Kustomize `base/` and `overlays/{dev,prod}/`; switch `skaffold.yaml` to `manifests.kustomize`.
+  - [x] Add profiles: `dev` (local build, Kind) and `prod` (registry push, prod overlay), explain profile activation by kube-context and `-p` flag.
+  - [x] Show env-var templating in `skaffold.yaml` (e.g. image repo) and `--default-repo`.
+  - [x] Optional: add a second small service as a second artifact to show `requires:`/multi-config and per-artifact dependencies.
+  - [x] Chapter 07.
 - Done when: `skaffold render -p dev` and `skaffold render -p prod` produce different, correct output; dev loop on Kind still works unchanged.
 
 ### Phase 8: Production deployment [STATUS: TODO]

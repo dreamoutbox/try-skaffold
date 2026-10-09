@@ -14,10 +14,9 @@ test:
     structureTests:
       - test/structure-test.yaml
 manifests:
-  rawYaml:
-    - k8s/namespace.yaml
-    - k8s/deployment.yaml
-    - k8s/service.yaml
+  kustomize:
+    paths:
+      - k8s/overlays/dev
 deploy:
   statusCheck: true
   statusCheckDeadlineSeconds: 60
@@ -43,3 +42,19 @@ portForward:
     namespace: skaffold-demo
     port: 80
     localPort: 8080
+profiles:
+  - name: dev
+    activation:
+      - kubeContext: kind-skaffold-demo
+    manifests:
+      kustomize:
+        paths:
+          - k8s/overlays/dev
+  - name: prod
+    manifests:
+      kustomize:
+        paths:
+          - k8s/overlays/prod
+    build:
+      local:
+        push: true
