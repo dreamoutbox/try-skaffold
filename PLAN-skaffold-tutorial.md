@@ -63,13 +63,13 @@ Prerequisites (installed by `./setup.sh` in Phase 1 where possible): Docker, Kin
   - [x] Chapter 05, including `--cleanup=false`, `--no-prune`, and `skaffold dev` vs `skaffold run` guidance.
 - Done when: changing the `/` response text and saving results in a new pod serving the new text without manual commands; Ctrl+C removes resources.
 
-### Phase 6: Testing and verification in the pipeline [STATUS: TODO]
+### Phase 6: Testing and verification in the pipeline [STATUS: DONE]
 - Goal: Skaffold gates deploys on tests and health.
 - Tasks:
-  - [ ] Add `container-structure-test` config (non-root user, exposed port, binary present) via `test:` section.
-  - [ ] Add `verify:` step: a small job/container that curls the service after deploy (`skaffold verify` / `skaffold run`).
-  - [ ] Configure `deploy.statusCheck` and deadline; demonstrate failure by breaking the readiness probe.
-  - [ ] Chapter 06.
+  - [x] Add `container-structure-test` config (non-root user, exposed port, binary present) via `test:` section.
+  - [x] Add `verify:` step: a small job/container that curls the service after deploy (`skaffold verify` / `skaffold run`).
+  - [x] Configure `deploy.statusCheck` and deadline; demonstrate failure by breaking the readiness probe.
+  - [x] Chapter 06.
 - Done when: broken probe makes `skaffold run` fail with a clear status-check error; fixed version passes tests and verify.
 
 ### Phase 7: Profiles, config, and multi-artifact (Kustomize) [STATUS: TODO]

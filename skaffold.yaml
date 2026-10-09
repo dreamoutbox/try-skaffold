@@ -9,13 +9,34 @@ build:
     - image: skaffold-demo
       docker:
         dockerfile: Dockerfile
+test:
+  - image: skaffold-demo
+    structureTests:
+      - test/structure-test.yaml
 manifests:
   rawYaml:
     - k8s/namespace.yaml
     - k8s/deployment.yaml
     - k8s/service.yaml
 deploy:
+  statusCheck: true
+  statusCheckDeadlineSeconds: 60
   kubectl: {}
+verify:
+  - name: verify-service-health
+    executionMode:
+      kubernetesCluster:
+        overrides: '{"metadata":{"namespace":"skaffold-demo"}}'
+    container:
+      name: curl-verifier
+      image: curlimages/curl:8.6.0
+      command: ["curl"]
+      args:
+        - "-f"
+        - "--retry"
+        - "5"
+        - "--retry-connrefused"
+        - "http://skaffold-demo.skaffold-demo.svc.cluster.local/healthz"
 portForward:
   - resourceType: service
     resourceName: skaffold-demo

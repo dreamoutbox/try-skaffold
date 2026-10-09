@@ -13,6 +13,9 @@ KIND_SHA256_AMD64="${KIND_SHA256_AMD64:-aee6151561422756b764a4ae28e7f44cda5af5a9
 SKAFFOLD_VERSION="${SKAFFOLD_VERSION:-v2.25.0}"
 SKAFFOLD_SHA256_AMD64="${SKAFFOLD_SHA256_AMD64:-42b9e2e3246c19b78fcc53dd60cc7ded1da8704293886b909a2a02b9bef34d20}"
 
+CONTAINER_STRUCTURE_TEST_VERSION="${CONTAINER_STRUCTURE_TEST_VERSION:-v1.22.1}"
+CONTAINER_STRUCTURE_TEST_SHA256_AMD64="${CONTAINER_STRUCTURE_TEST_SHA256_AMD64:-fa35e89512a8978585f76cf41397956d2e3a30c62c2ad3fb857b1597074d14ca}"
+
 MIN_GO_VERSION="${MIN_GO_VERSION:-1.21.0}"
 GO_INSTALL_VERSION="${GO_INSTALL_VERSION:-1.22.6}"
 
@@ -197,6 +200,23 @@ install_skaffold() {
   install_binary_file "skaffold" "${BIN_DIR}/skaffold" "${url}" "${expected_hash}"
 }
 
+install_container_structure_test() {
+  if command -v container-structure-test >/dev/null 2>&1; then
+    echo "container-structure-test is already installed ($(container-structure-test version))."
+    return 0
+  fi
+
+  local arch
+  arch="$(detect_arch)"
+  local expected_hash=""
+  if [ "${arch}" = "amd64" ]; then
+    expected_hash="${CONTAINER_STRUCTURE_TEST_SHA256_AMD64}"
+  fi
+
+  local url="https://github.com/GoogleContainerTools/container-structure-test/releases/download/${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test-linux-${arch}"
+  install_binary_file "container-structure-test" "${BIN_DIR}/container-structure-test" "${url}" "${expected_hash}"
+}
+
 # ==============================================================================
 # Subcommands
 # ==============================================================================
@@ -211,6 +231,7 @@ cmd_all() {
   install_kubectl
   install_kind
   install_skaffold
+  install_container_structure_test
   cmd_summary
 }
 
@@ -218,11 +239,11 @@ cmd_check() {
   local missing=0
 
   echo "Verifying prerequisites..."
-  for tool in curl git make docker kubectl kind skaffold go; do
+  for tool in curl git make docker kubectl kind skaffold container-structure-test go; do
     if command -v "${tool}" >/dev/null 2>&1; then
-      printf "  [OK] %-10s found: %s\n" "${tool}" "$(command -v "${tool}")"
+      printf "  [OK] %-25s found: %s\n" "${tool}" "$(command -v "${tool}")"
     else
-      printf "  [MISSING] %-10s NOT found in PATH\n" "${tool}"
+      printf "  [MISSING] %-25s NOT found in PATH\n" "${tool}"
       missing=$((missing + 1))
     fi
   done
@@ -287,6 +308,9 @@ cmd_summary() {
   fi
   if command -v skaffold >/dev/null 2>&1; then
     printf "Skaffold version: %s\n" "$(skaffold version)"
+  fi
+  if command -v container-structure-test >/dev/null 2>&1; then
+    printf "container-structure-test version: %s\n" "$(container-structure-test version)"
   fi
   if command -v go >/dev/null 2>&1; then
     go version

@@ -1,0 +1,12 @@
+schemaVersion: 2.0.0
+
+metadataTest:
+  exposedPorts: ["8080"]
+  user: "nonroot:nonroot"
+  entrypoint: ["/app/server"]
+  workdir: "/app"
+
+fileExistenceTests:
+  - name: "Server binary exists"
+    path: "/app/server"
+    shouldExist: true
