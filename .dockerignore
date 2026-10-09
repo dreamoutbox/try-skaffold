@@ -1,7 +1,10 @@
 .git
 .gitignore
-docs
-*.md
 bin
-setup.sh
+docs
+k8s
+test
 kind-config.yaml
+*.md
+setup.sh
+skaffold.yaml
